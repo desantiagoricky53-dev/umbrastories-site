@@ -1,0 +1,257 @@
+/* ============================================================
+   UMBRA — shared stylesheet (index, 404, case pages)
+   Brand: Ink #0A0A0B bg · Bone #E8E4DF text · Grey #7C838C
+          Teal #3F8F87 (true/real) · Amber #C2803A (fiction)
+   Dark-only. Never mix teal and amber inside one element.
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+  --ink:   #0A0A0B;
+  --bone:  #E8E4DF;
+  --grey:  #7C838C;
+  --teal:  #3F8F87;
+  --amber: #C2803A;
+  --card-bg:     #121214;
+  --card-border: #202024;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { overflow-x: hidden; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* Single centered column, mobile-first (~390px), capped on desktop */
+.wrap {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 40px 20px 56px;
+}
+
+/* ---------- Header ---------- */
+.site-header { text-align: center; margin-bottom: 8px; }
+
+.mark {
+  width: 88px;
+  height: 88px;
+  display: block;
+  margin: 0 auto 16px;
+}
+
+.wordmark {
+  margin: 0 0 10px;
+  color: var(--bone);
+  font-weight: 700;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.38em;
+  text-indent: 0.38em; /* visually re-centers tracked text */
+}
+
+.tagline {
+  margin: 0;
+  color: var(--grey);
+  font-size: 0.95rem;
+}
+
+/* ---------- Pillar sections + channel cards ---------- */
+.pillar { margin-top: 32px; }
+
+.pillar-label {
+  margin: 0 0 12px;
+  color: var(--grey);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* One accent per card, set via the modifier class — never both. */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--accent, var(--grey));
+  border-radius: 12px;
+  color: var(--bone);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.card:hover,
+.card:focus-visible { background: #17171a; }
+.card:active { background: #1b1b1f; }
+
+.card--teal  { --accent: var(--teal); }
+.card--amber { --accent: var(--amber); }
+
+.card .icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  color: var(--accent);
+}
+
+.card .name {
+  flex: 1 1 auto;
+  font-weight: 600;
+  font-size: 0.98rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.pill {
+  flex: 0 0 auto;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* ---------- Submit CTA (teal fill, Ink text ≈ 5.2:1 contrast) ---------- */
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 56px;
+  margin-top: 36px;
+  padding: 12px 16px;
+  background: var(--teal);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: background 0.15s ease;
+}
+.cta:hover { background: #47a096; }
+.cta:active { background: #37807a; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  margin-top: 44px;
+  text-align: center;
+  color: var(--grey);
+  font-size: 0.78rem;
+}
+.site-footer p { margin: 0; }
+
+/* ---------- Inline links ---------- */
+.link-teal {
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: none;
+}
+.link-teal:hover { text-decoration: underline; }
+
+/* ---------- 404 / centered pages ---------- */
+.page-center {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 20px;
+}
+
+.h-lost {
+  margin: 20px 0 8px;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+}
+
+.sub {
+  margin: 0 0 28px;
+  color: var(--grey);
+}
+
+/* ---------- Case pages (true crime = teal accent only) ---------- */
+.backlink {
+  display: inline-block;
+  color: var(--grey);
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.backlink:hover { color: var(--bone); }
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--teal);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.case-title {
+  margin: 0 0 4px;
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.case-meta {
+  margin: 0 0 24px;
+  color: var(--grey);
+  font-size: 0.85rem;
+}
+
+.disclaimer {
+  margin: 24px 0;
+  padding: 14px 16px;
+  border-left: 3px solid var(--teal);
+  border-radius: 0 10px 10px 0;
+  background: rgba(63, 143, 135, 0.08);
+  font-size: 0.92rem;
+}
+
+.section-h {
+  margin: 32px 0 8px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sources {
+  margin: 12px 0 0;
+  padding-left: 20px;
+}
+.sources li { margin-bottom: 10px; }
+.src-note { color: var(--grey); }
