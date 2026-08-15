@@ -49,6 +49,26 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
 
   <link rel="stylesheet" href="/styles.css">
+
+  <!-- JSON-LD Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Hinterkaifeck Murders (1922) — Case File",
+    "description": "Six people killed at a remote Bavarian farmstead. Officially unsolved.",
+    "url": "https://umbrastories.studio/cases/hinterkaifeck/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "UMBRA",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://umbrastories.studio/assets/icon-512.png"
+      }
+    },
+    "mainEntityOfPage": "https://umbrastories.studio/cases/hinterkaifeck/"
+  }
+  </script>
 </head>
 <body>
   <div class="wrap">
@@ -63,6 +83,26 @@
     </header>
 
     <main>
+      <!-- Key Facts Summary Card -->
+      <div class="facts-grid">
+        <div class="fact-card">
+          <div class="fact-label">Date</div>
+          <div class="fact-value">March 31, 1922</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-label">Location</div>
+          <div class="fact-value">Waidhofen, Bavaria</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-label">Status</div>
+          <div class="fact-value" style="color: var(--teal);">Officially Unsolved</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-label">Victims</div>
+          <div class="fact-value">6 People</div>
+        </div>
+      </div>
+
       <!-- EDIT: one-paragraph case summary -->
       <p>
         On the night of March 31, 1922, six people were murdered at Hinterkaifeck,
@@ -88,13 +128,16 @@
       <h2 class="section-h">Sources</h2>
       <!-- EDIT: sources — one <li> per source, link where a stable URL exists -->
       <ul class="sources">
-        <li><a class="link-teal" href="https://en.wikipedia.org/wiki/Hinterkaifeck_murders">Wikipedia &mdash; Hinterkaifeck murders</a></li>
+        <li><a class="link-teal" href="https://en.wikipedia.org/wiki/Hinterkaifeck_murders" target="_blank" rel="noopener noreferrer">Wikipedia &mdash; Hinterkaifeck murders</a></li>
         <li>Mental Floss &mdash; &ldquo;The Chilling Story of the Hinterkaifeck Killings&rdquo;</li>
         <li>F&uuml;rstenfeldbruck Police Academy, 2007 case review <span class="src-note">(secondary reporting)</span></li>
       </ul>
 
       <!-- EDIT: watch link — point at this case's episode or the pillar channel -->
-      <a class="cta" href="https://youtube.com/@UmbraColdCase">Watch on YouTube</a>
+      <a class="cta" href="https://youtube.com/@UmbraColdCase" target="_blank" rel="noopener noreferrer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#0A0A0B" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Watch on YouTube
+      </a>
     </main>
 
     <footer class="site-footer">

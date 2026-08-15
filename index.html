@@ -36,17 +36,53 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
 
   <link rel="stylesheet" href="/styles.css">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "UMBRA",
+    "url": "https://umbrastories.studio/",
+    "logo": "https://umbrastories.studio/assets/icon-512.png",
+    "description": "Multi-platform horror and true-crime story network delivering true crime, real accounts, and original horror in English y en español.",
+    "sameAs": [
+      "https://youtube.com/@UmbraColdCase",
+      "https://tiktok.com/@umbracoldcase",
+      "https://youtube.com/@UmbraCasos",
+      "https://youtube.com/@UmbraAfterDark",
+      "https://youtube.com/@UmbraNocturno",
+      "https://youtube.com/@UmbraFirsthand",
+      "https://youtube.com/@UmbraTestimonios"
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="wrap">
 
     <header class="site-header">
-      <img class="mark" src="/assets/mark-teal.png" alt="" width="88" height="88">
+      <a href="/"><img class="mark" src="/assets/mark-teal.png" alt="UMBRA Eclipse Logo" width="80" height="80"></a>
       <h1 class="wordmark">UMBRA</h1>
       <p class="tagline">Stories for the dark. True crime, real accounts, and original horror — in English y en español.</p>
+
+      <!-- Category Pills Navigation -->
+      <nav class="cat-nav" aria-label="Categories">
+        <a class="cat-pill active" href="/"><span class="dot"></span>All</a>
+        <a class="cat-pill" href="/true-crime/">True Crime</a>
+        <a class="cat-pill" href="/horror-fiction/">Horror Fiction</a>
+        <a class="cat-pill" href="/real-stories/">Real Stories</a>
+      </nav>
     </header>
 
     <main>
+      <!-- Quick Language & Pillar Filter Bar -->
+      <nav class="filter-bar" aria-label="Filter channels by language">
+        <button class="filter-btn active" data-filter="all">All Channels</button>
+        <button class="filter-btn" data-filter="EN">English (EN)</button>
+        <button class="filter-btn" data-filter="ES">Español (ES)</button>
+      </nav>
+
       <!-- Channel sections render here from the CHANNELS constant below. -->
       <div id="channels">
         <noscript>
@@ -54,34 +90,40 @@
                only the flagship channels so it never needs updating — the full
                channel list lives ONLY in the CHANNELS constant below. -->
           <section class="pillar">
-            <h2 class="pillar-label">Find us · Encuéntranos</h2>
+            <h2 class="pillar-label"><a href="/true-crime/" class="link-teal">True Crime · Casos reales &rarr;</a></h2>
             <ul class="cards">
-              <li><a class="card card--teal" href="https://youtube.com/@UmbraColdCase"><span class="name">Umbra on YouTube</span><span class="pill">EN</span></a></li>
-              <li><a class="card card--teal" href="https://tiktok.com/@umbracoldcase"><span class="name">Umbra on TikTok</span><span class="pill">EN</span></a></li>
+              <li><a class="card card--teal" href="https://youtube.com/@UmbraColdCase"><span class="name">Umbra - True Crime (YouTube)</span><span class="pill">EN</span></a></li>
+              <li><a class="card card--teal" href="https://tiktok.com/@umbracoldcase"><span class="name">Umbra - True Crime (TikTok)</span><span class="pill">EN</span></a></li>
             </ul>
           </section>
         </noscript>
       </div>
 
-      <a class="cta" href="/submit">Submit your story · Envía tu historia</a>
+      <a class="cta" href="/submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+        Submit your story · Envía tu historia
+      </a>
 
-      <!-- ============================================================
-           NEWSLETTER — placeholder. Out of scope for launch (spec).
-           Uncomment and wire to a provider when ready.
+      <button id="share-btn" class="btn-secondary" type="button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share network · Compartir enlace
+      </button>
 
-      <section class="pillar" id="newsletter">
-        <h2 class="pillar-label">Newsletter · Boletín</h2>
-        <p class="tagline">New stories in your inbox. · Nuevas historias en tu correo.</p>
-        <form action="#" method="post">
-          <input type="email" name="email" placeholder="you@example.com" required>
-          <button type="submit">Subscribe · Suscríbete</button>
-        </form>
-      </section>
-      ============================================================ -->
+      <!-- Toast Notification Container -->
+      <div id="toast" class="toast" role="status" aria-live="polite">Link copied to clipboard! · ¡Enlace copiado!</div>
     </main>
 
     <footer class="site-footer">
       <p>umbrastories.studio</p>
+      <div class="sub-links">
+        <a href="/true-crime/">True Crime</a>
+        <span>·</span>
+        <a href="/horror-fiction/">Horror Fiction</a>
+        <span>·</span>
+        <a href="/real-stories/">Real Stories</a>
+        <span>·</span>
+        <a href="/cases/hinterkaifeck">Case Files</a>
+      </div>
     </footer>
 
   </div>
@@ -90,72 +132,93 @@
     // ══════════════════════════════════════════════════════════════════
     // CHANNEL LIST — single source of truth for every card on this page.
     // Adding a channel is a ONE-LINE edit: add an object to this array.
-    // Fields:
-    //   pillar:   "truecrime" | "fiction" | "real"
-    //   accent:   "teal" (true/real pillars) | "amber" (fiction pillars)
-    //             — one accent per card, NEVER mixed
-    //   platform: "youtube" | "tiktok"
-    //   name:     display name (rendered in Bone)
-    //   url:      full channel URL
-    //   lang:     "EN" | "ES"
-    // Keep the <noscript> list above in sync when you edit this.
     // ══════════════════════════════════════════════════════════════════
     const CHANNELS = [
       // ── True crime ──────────────────────────────────────────────────
       { pillar: "truecrime", accent: "teal",  platform: "youtube", name: "Umbra - True Crime", url: "https://youtube.com/@UmbraColdCase",   lang: "EN" },
       { pillar: "truecrime", accent: "teal",  platform: "tiktok",  name: "Umbra - True Crime", url: "https://tiktok.com/@umbracoldcase",    lang: "EN" },
       { pillar: "truecrime", accent: "teal",  platform: "youtube", name: "Umbra - Casos",      url: "https://youtube.com/@UmbraCasos",      lang: "ES" },
-      // TODO: Umbra - Casos TikTok (ES) — planned; add one line here when live + branded.
 
       // ── Horror fiction ──────────────────────────────────────────────
       { pillar: "fiction",   accent: "amber", platform: "youtube", name: "Umbra - After Dark", url: "https://youtube.com/@UmbraAfterDark",  lang: "EN" },
-      // TODO: Umbra - After Dark TikTok EXISTS but is unbranded on a temporary
-      //       handle — do NOT list it until it is rebranded. Then add one line here.
       { pillar: "fiction",   accent: "amber", platform: "youtube", name: "Umbra - Nocturno",   url: "https://youtube.com/@UmbraNocturno",   lang: "ES" },
-      // TODO: Umbra - Nocturno TikTok (ES) — planned; add one line here when live + branded.
 
       // ── Real stories ────────────────────────────────────────────────
       { pillar: "real",      accent: "teal",  platform: "youtube", name: "Umbra - Firsthand",  url: "https://youtube.com/@UmbraFirsthand",  lang: "EN" },
-      // TODO: Umbra - Firsthand TikTok (EN) — planned; add one line here when live + branded.
       { pillar: "real",      accent: "teal",  platform: "youtube", name: "Umbra - Testimonios", url: "https://youtube.com/@UmbraTestimonios", lang: "ES" },
-      // TODO: Umbra - Testimonios TikTok (ES) — planned; add one line here when live + branded.
     ];
 
-    // Pillar order + bilingual section labels.
+    // Pillar order + bilingual section labels & category page links.
     const PILLARS = [
-      { id: "truecrime", label: "True Crime · Casos reales" },
-      { id: "fiction",   label: "Horror Fiction · Ficción de terror" },
-      { id: "real",      label: "Real Stories · Historias reales" },
+      { id: "truecrime", label: "True Crime · Casos reales", link: "/true-crime/" },
+      { id: "fiction",   label: "Horror Fiction · Ficción de terror", link: "/horror-fiction/" },
+      { id: "real",      label: "Real Stories · Historias reales", link: "/real-stories/" },
     ];
 
-    // Small monochrome platform glyphs, tinted by the card's accent.
     const ICONS = {
       youtube: '<svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#0A0A0B" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
       tiktok:  '<svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>',
     };
 
     const PLATFORM_NAMES = { youtube: "YouTube", tiktok: "TikTok" };
-
     const container = document.getElementById("channels");
-    PILLARS.forEach(function (p) {
-      const items = CHANNELS.filter(function (c) { return c.pillar === p.id; });
-      if (!items.length) return;
-      const section = document.createElement("section");
-      section.className = "pillar";
-      section.innerHTML =
-        '<h2 class="pillar-label">' + p.label + "</h2>" +
-        '<div class="cards">' +
-        items.map(function (c) {
-          return (
-            '<a class="card card--' + c.accent + '" href="' + c.url + '"' +
-            ' aria-label="' + c.name + " on " + PLATFORM_NAMES[c.platform] + " (" + c.lang + ')">' +
-            ICONS[c.platform] +
-            '<span class="name">' + c.name + "</span>" +
-            '<span class="pill">' + c.lang + "</span></a>"
-          );
-        }).join("") +
-        "</div>";
-      container.appendChild(section);
+
+    function renderChannels(activeFilter) {
+      container.innerHTML = "";
+      activeFilter = activeFilter || "all";
+
+      PILLARS.forEach(function (p) {
+        let items = CHANNELS.filter(function (c) { return c.pillar === p.id; });
+        if (activeFilter !== "all") {
+          items = items.filter(function (c) { return c.lang === activeFilter; });
+        }
+        if (!items.length) return;
+
+        const section = document.createElement("section");
+        section.className = "pillar";
+        section.innerHTML =
+          '<h2 class="pillar-label"><a href="' + p.link + '" class="link-teal" style="color: inherit; text-decoration: none;">' + p.label + ' <span style="font-size: 0.85em; opacity: 0.7;">&rarr;</span></a></h2>' +
+          '<div class="cards">' +
+          items.map(function (c) {
+            return (
+              '<a class="card card--' + c.accent + '" href="' + c.url + '"' +
+              ' target="_blank" rel="noopener noreferrer"' +
+              ' aria-label="' + c.name + " on " + PLATFORM_NAMES[c.platform] + " (" + c.lang + ')">' +
+              ICONS[c.platform] +
+              '<span class="name">' + c.name + "</span>" +
+              '<span class="pill">' + c.lang + "</span></a>"
+            );
+          }).join("") +
+          "</div>";
+        container.appendChild(section);
+      });
+    }
+
+    renderChannels("all");
+
+    // Filter buttons (EN / ES)
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        filterBtns.forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        renderChannels(btn.getAttribute("data-filter"));
+      });
+    });
+
+    // Share button toast handler
+    const shareBtn = document.getElementById("share-btn");
+    const toast = document.getElementById("toast");
+    shareBtn.addEventListener("click", function () {
+      const shareUrl = "https://umbrastories.studio/";
+      if (navigator.share) {
+        navigator.share({ title: "UMBRA — Stories for the dark", url: shareUrl }).catch(function () {});
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareUrl).then(function () {
+          toast.classList.add("show");
+          setTimeout(function () { toast.classList.remove("show"); }, 3000);
+        });
+      }
     });
   </script>
 </body>

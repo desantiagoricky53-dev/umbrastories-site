@@ -1,11 +1,14 @@
 # umbrastories-site
 
-Static link-in-bio site + redirects for **UMBRA** (umbrastories.studio), a
+Static link-in-bio site + category pages + redirects for **UMBRA** (umbrastories.studio), a
 bilingual horror / true-crime story network. Plain HTML/CSS/JS, no build step,
 hosted free on **GitHub Pages** with a custom domain.
 
-- `index.html` — link-in-bio landing page (channel cards rendered from one JS array)
-- `styles.css` — shared stylesheet (index, 404, case pages)
+- `index.html` — link-in-bio landing page (channel cards rendered from one JS array + category navigation)
+- `true-crime/` — dedicated landing page for True Crime & Casos Reales (Teal accent)
+- `horror-fiction/` — dedicated landing page for Horror Fiction & Ficción de Terror (Amber accent)
+- `real-stories/` — dedicated landing page for Real Stories & Historias Reales (Teal accent)
+- `styles.css` — shared stylesheet (index, category pages, 404, case pages)
 - `404.html` — branded 404 (GitHub Pages serves this automatically)
 - `submit/ yt/ tt/ casos/ nocturno/ afterdark/ firsthand/ testimonios/` — meta-refresh redirect stubs
 - `cases/hinterkaifeck/` — first episode source page; doubles as the case-page template
@@ -20,7 +23,7 @@ inside one card or element**.
 
 ---
 
-## The three update workflows
+## The update workflows
 
 ### 1. Add a channel (one-line edit)
 
@@ -42,7 +45,7 @@ Field cheat-sheet:
 | `lang` | `"EN"` \| `"ES"` |
 
 Commit, push. Done — one line, one place. (The `<noscript>` fallback lists
-only the two flagship channels on purpose and never needs updating.)
+only the flagship channels on purpose and never needs updating.) Also remember to add to the corresponding category page (`true-crime/`, `horror-fiction/`, or `real-stories/`).
 
 ### 2. Add a redirect (copy a stub folder)
 
@@ -105,8 +108,9 @@ Add these records in the Spaceship DNS panel:
 - [ ] `https://umbrastories.studio` loads over HTTPS (no cert warning)
 - [ ] `https://www.umbrastories.studio` loads over HTTPS
 - [ ] `https://umbrastories.studio/submit` lands on the Google Form
-- [ ] Spot-check one channel redirect (e.g. `/yt` → the Cold Case channel)
-- [ ] `/cases/hinterkaifeck/` renders with styling
+- [ ] Spot-check category pages (`/true-crime/`, `/horror-fiction/`, `/real-stories/`)
+- [ ] Spot-check channel redirects (e.g. `/yt`, `/casos`, `/afterdark`)
+- [ ] `/cases/hinterkaifeck/` renders with styling and key facts grid
 - [ ] A bogus URL (e.g. `/nope`) shows the branded 404
 - [ ] **Email still works**: send a message *to* and *from* a
       `@umbrastories.studio` mailbox and confirm both arrive
