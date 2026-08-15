@@ -25,7 +25,7 @@ inside one card or element**.
 
 ## The update workflows
 
-### 1. Add a channel (one-line edit)
+### 1. Add a channel (two edits: index + its category page)
 
 Open `index.html` and find the `CHANNELS` constant at the top of the inline
 `<script>`. Add **one line** — the `TODO` comments already mark where each
@@ -44,8 +44,11 @@ Field cheat-sheet:
 | `platform` | `"youtube"` \| `"tiktok"` |
 | `lang` | `"EN"` \| `"ES"` |
 
-Commit, push. Done — one line, one place. (The `<noscript>` fallback lists
-only the flagship channels on purpose and never needs updating.) Also remember to add to the corresponding category page (`true-crime/`, `horror-fiction/`, or `real-stories/`).
+Then add the matching card in the corresponding category page
+(`true-crime/`, `horror-fiction/`, or `real-stories/index.html` — their card
+lists are hardcoded HTML, copy an existing `<a class="card ...">` block).
+Commit, push. Done. (The `<noscript>` fallback in `index.html` lists only the
+flagship channels on purpose and never needs updating.)
 
 ### 2. Add a redirect (copy a stub folder)
 

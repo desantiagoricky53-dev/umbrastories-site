@@ -3,6 +3,9 @@
    Brand: Ink #0A0A0B bg · Bone #E8E4DF text · Grey #7C838C
           Teal #3F8F87 (true/real) · Amber #C2803A (fiction)
    Dark-only. Never mix teal and amber inside one element.
+   Extended surface neutrals (sanctioned, non-accent): the
+   --card-* tokens below are near-Ink greys for card surfaces
+   and borders only — never use them as accents or text.
    ============================================================ */
 
 :root {
@@ -72,9 +75,11 @@ img {
   padding: 32px 20px 56px;
 }
 
-/* ---------- Focus Ring for Accessibility ---------- */
+/* ---------- Focus Ring for Accessibility ----------
+   Follows the element's own accent (amber cards get an amber
+   ring) so teal and amber never mix inside one element. */
 a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--accent, var(--teal));
   outline-offset: 3px;
 }
 
@@ -135,7 +140,8 @@ a:focus-visible, button:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
+  padding: 11px 16px;
+  min-height: 42px;
   color: var(--grey);
   font-size: 0.78rem;
   font-weight: 600;
@@ -157,15 +163,52 @@ a:focus-visible, button:focus-visible {
 }
 
 .cat-pill.active.teal {
+  --accent: var(--teal);
   color: var(--bone);
   background: rgba(63, 143, 135, 0.15);
   border-color: var(--teal);
 }
 
 .cat-pill.active.amber {
+  --accent: var(--amber);
   color: var(--bone);
   background: rgba(194, 128, 58, 0.15);
   border-color: var(--amber);
+}
+
+/* ---------- Language filter bar (index) ---------- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 0 24px;
+}
+
+.filter-btn {
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--grey);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  min-height: 44px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-btn:hover {
+  color: var(--bone);
+  background: var(--card-bg-hover);
+  border-color: var(--card-border-hover);
+}
+
+.filter-btn.active {
+  color: var(--bone);
+  background: rgba(63, 143, 135, 0.15);
+  border-color: var(--teal);
 }
 
 /* Dot Indicator for Active Pillar */
