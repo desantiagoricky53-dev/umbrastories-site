@@ -72,6 +72,8 @@ Open `cases/<new-slug>/index.html` — every editable slot is marked with an
 plus `<title>`/description/canonical in `<head>`). Keep the unsolved-case
 disclaimer verbatim where it applies. Finally, add the new URL to
 `sitemap.xml`. True-crime case pages use **teal** accents only.
+New case pages must also be added to `cases/index.html` (the Case Files
+index) and `sitemap.xml`.
 
 ---
 
@@ -132,6 +134,23 @@ with a local server from the repo root — not `file://`:
 python3 -m http.server 8080
 # open http://localhost:8080
 ```
+
+## Latest-video lines on the landing page
+
+`latest-videos.json` (repo root) holds each YouTube channel's newest upload,
+fetched from YouTube's public RSS feeds (no API key). The landing page reads
+it and adds a small "Latest: …" line inside each channel card; if the file is
+missing or stale the cards simply render without the line — nothing breaks.
+
+Refresh it any time with:
+
+```bash
+python3 tools/fetch_latest_videos.py
+```
+
+then commit and push the changed JSON. Channels with no uploads yet are
+skipped automatically. Deleting `latest-videos.json` disables the feature
+harmlessly.
 
 ## Deliberately out of scope
 

@@ -355,6 +355,22 @@ a:focus-visible, button:focus-visible {
   margin-top: 1px;
 }
 
+/* Newest-upload line inside a card (populated from /latest-videos.json). */
+.card .latest {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--grey);
+  font-weight: 400;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card:hover .latest {
+  color: var(--accent, var(--grey));
+}
+
 .pill {
   flex: 0 0 auto;
   color: var(--accent);

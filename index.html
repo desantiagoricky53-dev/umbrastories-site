@@ -137,7 +137,7 @@
         <span>·</span>
         <a href="/real-stories/">Real Stories</a>
         <span>·</span>
-        <a href="/cases/hinterkaifeck/">Case Files</a>
+        <a href="/cases/">Case Files</a>
         <span>·</span>
         <a href="/privacy/">Privacy</a>
         <span>·</span>
@@ -188,9 +188,24 @@
     const PLATFORM_NAMES = { youtube: "YouTube", tiktok: "TikTok" };
     const container = document.getElementById("channels");
 
+    // Latest-upload titles per handle, loaded from /latest-videos.json below.
+    // Stays an empty object when the file is missing/unreadable, in which
+    // case cards render exactly as they always have.
+    let LATEST = {};
+    let currentFilter = "all";
+
+    function escText(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+    function handleOf(url) {
+      const m = url.match(/@[\w.-]+$/);
+      return m ? m[0] : null;
+    }
+
     function renderChannels(activeFilter) {
       container.innerHTML = "";
       activeFilter = activeFilter || "all";
+      currentFilter = activeFilter;
 
       PILLARS.forEach(function (p) {
         let items = CHANNELS.filter(function (c) { return c.pillar === p.id; });
@@ -210,7 +225,11 @@
               ' target="_blank" rel="noopener noreferrer"' +
               ' aria-label="' + c.name + " on " + PLATFORM_NAMES[c.platform] + " (" + c.lang + ')">' +
               ICONS[c.platform] +
-              '<span class="name">' + c.name + "</span>" +
+              '<span class="name">' + c.name +
+              (LATEST[handleOf(c.url)]
+                ? '<span class="latest">Latest: ' + escText(LATEST[handleOf(c.url)].title) + "</span>"
+                : "") +
+              "</span>" +
               '<span class="pill">' + c.lang + "</span></a>"
             );
           }).join("") +
@@ -220,6 +239,21 @@
     }
 
     renderChannels("all");
+
+    // Progressive enhancement: show each channel's newest upload title.
+    // Every failure mode (404 before the first feed run, bad JSON, file://)
+    // must leave the page exactly as rendered above.
+    try {
+      fetch("/latest-videos.json")
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          if (data && data.channels) {
+            LATEST = data.channels;
+            renderChannels(currentFilter);
+          }
+        })
+        .catch(function () {});
+    } catch (e) { /* no fetch (very old browser / file://) — cards stay as-is */ }
 
     // Filter buttons (EN / ES)
     const filterBtns = document.querySelectorAll(".filter-btn");
