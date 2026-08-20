@@ -295,7 +295,6 @@ a:focus-visible, button:focus-visible {
   background: linear-gradient(135deg, rgba(22, 22, 26, 0.95) 0%, rgba(16, 16, 19, 0.95) 100%);
   backdrop-filter: blur(8px);
   border: 1px solid var(--card-border);
-  border-left: 3.5px solid var(--accent, var(--grey));
   border-radius: var(--radius-md);
   color: var(--bone);
   text-decoration: none;
@@ -308,7 +307,6 @@ a:focus-visible, button:focus-visible {
 .card:focus-visible {
   background: var(--card-bg-hover);
   border-color: var(--card-border-hover);
-  border-left-color: var(--accent, var(--grey));
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px var(--glow, transparent);
 }
