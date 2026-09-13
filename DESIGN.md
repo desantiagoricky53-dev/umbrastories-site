@@ -51,14 +51,23 @@ Rules:
   text, and teal or amber type only sits on ink or `--card-bg`.
 - Dark-only, on purpose (`color-scheme: dark`). The site is the inside of a
   shadow; there is no light theme to build.
+- **[open]** The brand comment in `styles.css` assigns bone to text and ink to
+  the ground. One proposed home-page direction inverts that in exactly one
+  place (a bone surface carrying ink text at the Submit section). That is a
+  brand-rule change, not a styling choice, and it needs Rico's yes before it
+  is built. If approved, bone as a ground is allowed in that one section and
+  nowhere else, and it carries ink text only.
 - The `.card` background hardcodes `#131316`; it becomes `var(--card-bg)`.
 
 ## 3. Type
 
-Keep Poppins (400, 600, 700). The one-sentence reason: it is the face on
-every thumbnail and end-card, so a tap from a Short lands on the same
-letterforms. No replacement has a sentence that strong; swapping to a
-fashionable face would reset the clock rather than fix anything.
+Keep Poppins (400, 600, 700). The one-sentence reason: it is the face of the
+end-cards, watermarks, and OG image (`tools/make_assets.py` renders them in
+Poppins Bold, SemiBold, and Regular), so a tap from a video lands on the same
+letterforms. **[open: confirm]** that the video thumbnails use Poppins too;
+if they do not, the reason weakens and the decision is revisited. No
+replacement has a sentence that strong; swapping to a fashionable face would
+reset the clock rather than fix anything.
 
 Poppins has no variable version and its 400 weight runs thin on ink, so the
 type gets its range from setting, not from a second family (T3):
@@ -72,13 +81,18 @@ type gets its range from setting, not from a second family (T3):
 
 Second face: Chivo Mono 400, and only where it has a job: aligned record
 metadata (a year · place · title list, the case-page facts grid, the sources
-list). It is not loaded on a page that has no aligned figures. Direction B's
-Case Files section earns it on the home page; Direction A does not.
+list). It is one more Google Fonts request from the same origin, Latin
+subset only, and it is loaded only on pages that set aligned figures. The
+home page qualifies only if its Case Files section sets year and place in
+columns.
 
-Labels (T5): one tracked uppercase style survives, the case-page eyebrow
-("Case File · True Crime"). Pillar and section headings on the home page are
-sentence case. The wordmark "UMBRA" stays tracked because it is a logotype,
-not a label. **[open: confirm]**
+Labels (T5), scoped to this pass: on the home page, no tracked uppercase
+labels except the logotype "UMBRA", which stays tracked because it is a
+logotype, not a label. Pillar and section headings on the home page are
+sentence case. Case pages keep their one eyebrow ("Case File · True Crime").
+The other tracked styles in the shared stylesheet (`.fact-label`,
+`.section-h` on case pages, `.feat-label` on category pages) are out of scope
+here and get their own pass. **[open: confirm]**
 
 Excluded, and why: Inter, Geist, Roboto, Open Sans, Instrument Serif, Playfair
 Display (reference defaults); Fraunces, Newsreader, IBM Plex (Rico's other
@@ -91,9 +105,12 @@ A link-in-bio page first. The visitor tapped a bio link on a phone, often at
 night, and wants the right UMBRA channel in their language. The page's second
 job is Submit.
 
-- The first channel link is visible without scrolling at 390×844. Today it
-  sits about 400–430px down; the header tightens and the category pill row
-  moves to the footer to get there.
+- The first channel link is visible without scrolling at 390×844. Measured
+  on the live site: the first channel row starts at 468px, so the floor holds
+  today. The category pill row costs about 102px with its margins and the
+  language filter wraps to two rows at 390px; moving the pill row to the
+  footer and keeping the filter on one row buys headroom for rows that carry
+  metadata, so the floor still holds after the redesign.
 - One thumb-width column on mobile. That is the one-sentence reason it stays
   centered (L1). On desktop the page is not a scaled-up phone: the column
   widens into two, and the one scroll moment may pin for up to one viewport.
@@ -108,7 +125,8 @@ job is Submit.
 Two radius levels (O2): 999px for language pills and the toast, 12px for
 containers and buttons. Everything else is a hairline or square. The
 one-sided radius on `.disclaimer` and the 8px on small cells collapse into
-these two.
+these two. Those are shared tokens, so the collapse touches category and
+case pages; they get checked after the change, like every shared edit.
 
 ## Motion
 
