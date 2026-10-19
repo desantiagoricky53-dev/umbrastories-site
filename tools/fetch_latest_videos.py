@@ -63,6 +63,10 @@ def main():
             continue
         channels[handle] = entry
 
+    if not channels:
+        print("no channels fetched; leaving %s unchanged" % OUT.name, file=sys.stderr)
+        sys.exit(1)
+
     data = {
         "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "channels": channels,
