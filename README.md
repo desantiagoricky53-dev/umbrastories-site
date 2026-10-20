@@ -4,7 +4,8 @@ Static link-in-bio site + category pages + redirects for **UMBRA** (umbrastories
 bilingual horror / true-crime story network. Plain HTML/CSS/JS, no build step,
 hosted free on **GitHub Pages** with a custom domain.
 
-- `index.html` — link-in-bio landing page (channel cards rendered from one JS array + category navigation)
+- `index.html` — link-in-bio home page, "The Ledger" (see `DESIGN.md`): channel rows rendered from one JS array into two ledgers, a Case Files record, and the Submit section
+- `home.css` — home-page-only styles (everything scoped under `body.home`)
 - `true-crime/` — dedicated landing page for True Crime & Casos Reales (Teal accent)
 - `horror-fiction/` — dedicated landing page for Horror Fiction & Ficción de Terror (Amber accent)
 - `real-stories/` — dedicated landing page for Real Stories & Historias Reales (Teal accent)
@@ -32,8 +33,15 @@ Open `index.html` and find the `CHANNELS` constant at the top of the inline
 pending TikTok goes:
 
 ```js
-{ pillar: "fiction", accent: "amber", platform: "tiktok", name: "Umbra - Nocturno", url: "https://tiktok.com/@UmbraNocturno", lang: "ES" },
+{ pillar: "fiction", accent: "amber", platform: "tiktok", name: "Umbra Nocturno", url: "https://tiktok.com/@umbra.nocturno", lang: "ES" },
 ```
+
+Planned channels are already in the array with `live: false`, which keeps
+them off the page. When one goes live, delete `live: false` from its line.
+Use the channel's display name as the platform shows it. The home page
+groups rows into its two ledgers by `accent`, so nothing else changes. If a
+new channel's handle is new, add its URL to the JSON-LD `sameAs` list in
+`<head>` too.
 
 Field cheat-sheet:
 
@@ -43,6 +51,7 @@ Field cheat-sheet:
 | `accent` | `"teal"` (true/real) \| `"amber"` (fiction) — never mixed |
 | `platform` | `"youtube"` \| `"tiktok"` |
 | `lang` | `"EN"` \| `"ES"` |
+| `live` | omit when live \| `false` while planned |
 
 Then add the matching card in the corresponding category page
 (`true-crime/`, `horror-fiction/`, or `real-stories/index.html` — their card
@@ -73,7 +82,8 @@ plus `<title>`/description/canonical in `<head>`). Keep the unsolved-case
 disclaimer verbatim where it applies. Finally, add the new URL to
 `sitemap.xml`. True-crime case pages use **teal** accents only.
 New case pages must also be added to `cases/index.html` (the Case Files
-index) and `sitemap.xml`.
+index), the Case Files record in `index.html` (one `<li>`, in year order),
+and `sitemap.xml`.
 
 ---
 
@@ -156,4 +166,5 @@ harmlessly.
 
 No analytics, no trackers, no cookies. Newsletter is a commented-out
 placeholder in `index.html`. The only external requests on any page are the
-Google Fonts loads for Poppins.
+Google Fonts loads (Poppins everywhere; Metamorphous and Chivo Mono on the
+home page).

@@ -19,9 +19,11 @@
   --card-bg-hover: #18181F;
   --card-border: #202026;
   --card-border-hover: #2E2E38;
-  --radius-sm:   8px;
+  /* Two radius levels (DESIGN.md, Shape): 999px pills, 12px containers.
+     The sm/lg names stay so existing rules keep working. */
+  --radius-sm:   12px;
   --radius-md:   12px;
-  --radius-lg:   16px;
+  --radius-lg:   12px;
   --transition:  color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
                  background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
                  border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
@@ -103,10 +105,6 @@ a:focus-visible, button:focus-visible {
   display: block;
   margin: 0 auto 14px;
   filter: drop-shadow(0 0 16px rgba(63, 143, 135, 0.2)); /* slop-ok: C5 — part of the moon-glow, see above */
-  transition: transform 0.3s ease;
-}
-.mark:hover {
-  transform: scale(1.04);
 }
 
 .wordmark {
@@ -298,7 +296,7 @@ a:focus-visible, button:focus-visible {
   width: 100%;
   min-height: 56px;
   padding: 12px 16px;
-  background: #131316;
+  background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-md);
   color: var(--bone);
@@ -312,21 +310,17 @@ a:focus-visible, button:focus-visible {
 .card:focus-visible {
   background: var(--card-bg-hover);
   border-color: var(--card-border-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px var(--glow, transparent);
 }
 
 .card:active {
-  transform: translateY(0);
+  background: var(--card-bg);
 }
 
 .card--teal  {
   --accent: var(--teal);
-  --glow: rgba(63, 143, 135, 0.12); /* slop-ok: C5 — pillar-accent hover affordance on interactive cards only */
 }
 .card--amber {
   --accent: var(--amber);
-  --glow: rgba(194, 128, 58, 0.12);
 }
 
 .card .icon {
@@ -397,7 +391,6 @@ a:focus-visible, button:focus-visible {
 .category-feature-card:hover {
   background: var(--card-bg-hover);
   border-color: var(--teal);
-  transform: translateY(-2px);
 }
 
 .category-feature-card .feat-label {
@@ -444,12 +437,9 @@ a:focus-visible, button:focus-visible {
 }
 .cta:hover, .cta:focus-visible {
   background: #47a096;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.55);
 }
 .cta:active {
   background: #37807a;
-  transform: translateY(0);
 }
 
 /* Secondary Action Button */
@@ -634,7 +624,7 @@ a:focus-visible, button:focus-visible {
   margin: 24px 0;
   padding: 14px 16px;
   border-left: 3.5px solid var(--teal);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-radius: var(--radius-md);
   background: rgba(63, 143, 135, 0.08);
   font-size: 0.92rem;
   color: var(--bone);
