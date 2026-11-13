@@ -115,6 +115,13 @@ body.home {
   font-weight: 600;
   line-height: 1.4;
 }
+/* Text-size links get a 44px tap target; the negative margin keeps the layout unchanged. */
+.home .pillar-h a,
+.home .starting a {
+  display: inline-block;
+  padding: 12px 0;
+  margin: -12px 0;
+}
 .home .pillar-h a {
   color: var(--bone);
   text-decoration: none;
